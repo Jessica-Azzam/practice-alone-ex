@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05 - Sticky Nav</title>
+</head>
+
+<body>
+    <style>
+main {
+    display: flex;
+    width: 400px;
+    margin: 0 auto;
+}
+
+nav {
+    position: relative;
+}
+
+nav ul {
+    width: 6rem;
+    list-style-type: none;
+}
+
+nav ul li {
+    padding: .5rem;
+}
+
+nav ul a {
+    padding: .5rem;
+    text-decoration: none;
+}
+
+/* nav.sticky {
+    position: sticky;
+    top: 0;
+} */
+
+nav a.active {
+    background-color: lightseagreen;
+    color: white;
+}
+    </style>
+    <main>
+        <nav>
+            <ul>
+                <li><a href="#section1">Section 1</a></li>
+                <li><a href="#section2">Section 2</a></li>
+                <li><a href="#section3">Section 3</a></li>
+            </ul>
+        </nav>
+        <article>
+            <section id="section1">
+                <h2>Section 1</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci hic dolores placeat doloribus
+                    libero
+                    natus aperiam magni architecto, cupiditate eius! Facere cupiditate praesentium eveniet laudantium ex
+                    vero suscipit officiis quisquam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci hic dolores placeat doloribus
+                    libero
+                    natus aperiam magni architecto, cupiditate eius! Facere cupiditate praesentium eveniet laudantium ex
+                    vero suscipit officiis quisquam.</p>
+            </section>
+            <section id="section2">
+
+                <h2>Section 2</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci hic dolores placeat doloribus
+                    libero
+                    natus aperiam magni architecto, cupiditate eius! Facere cupiditate praesentium eveniet laudantium ex
+                    vero suscipit officiis quisquam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci hic dolores placeat doloribus
+                    libero
+                    natus aperiam magni architecto, cupiditate eius! Facere cupiditate praesentium eveniet laudantium ex
+                    vero suscipit officiis quisquam.</p>
+            </section>
+            <section id="section3">
+                <h2>Section 3</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci hic dolores placeat doloribus
+                    libero
+                    natus aperiam magni architecto, cupiditate eius! Facere cupiditate praesentium eveniet laudantium ex
+                    vero suscipit officiis quisquam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci hic dolores placeat doloribus
+                    libero
+                    natus aperiam magni architecto, cupiditate eius! Facere cupiditate praesentium eveniet laudantium ex
+                    vero suscipit officiis quisquam.</p>
+            </section>
+        </article>
+    </main>
+    <script>
+const navElement = document.querySelector('nav');
+const navPosition = navElement.getBoundingClientRect().top;
+const navbarLinks = navElement.querySelectorAll('a');
+
+window.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY;
+    navElement.style.top = scrollPos + 'px';
+
+    navbarLinks.forEach(link => {
+        const offset = 10;
+        const sectionElement = document.querySelector(link.hash);
+        if (scrollPos + offset > sectionElement.offsetTop && scrollPos + offset < sectionElement.offsetTop + sectionElement.offsetHeight) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active");
+        }
+    });
+});
+    </script>
+</body>
+
+</html>

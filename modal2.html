@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 - Modal</title>
+</head>
+
+<body>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            background-image: url(background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat
+        }
+
+        button {
+            margin: 2rem;
+            display: inline;
+            background-color: teal;
+            color: whitesmoke;
+            padding: .5rem 1rem;
+            border: 0;
+            box-shadow: 0 0 12px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkslategrey;
+        }
+
+        .modal {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .modal__content {
+            background-color: white;
+            padding: 4rem;
+            position: relative;
+            cursor: pointer;
+        }
+    </style>
+    <button id="openModal">Open Modal</button>
+    <!-- //the main container for the modal, initially hidden -->
+    <div class="modal">
+       <!-- //.modal__overlay: A semi-transparent background overlay that covers the entire screen. -->
+        <div class="modal__overlay"></div>
+        <!-- //modal__content: The actual content of the modal, which includes a heading and a paragraph -->
+        <div class="modal__content">
+            <h1>Hello World!</h1>
+            <p>Click anywhere in the modal to close it.</p>
+        </div>
+
+        <script>
+            const openModalBtnElement = document.querySelector('#openModal');
+            const modalElement = document.querySelector('.modal');
+            const modalContentElement = modalElement.querySelector('.modal__content')
+
+            openModalBtnElement.addEventListener('click', () => {
+                modalElement.classList.add('open');
+            });
+
+            modalContentElement.addEventListener('click', () => {
+                modalElement.classList.remove('open');
+            });
+        </script>
+</body>
+</div>
+
+</html>

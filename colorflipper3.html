@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 - Colour Flipper</title>
+</head>
+<body>
+    <style>
+        body {
+    transition: background-color 0.5s;
+}
+
+section#colour-display {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 100px auto;
+    width: 50%;
+    background-color: white;
+    box-shadow: 0 0 30px rgba(0,0,0, 0.5);
+    padding: 4rem;
+    border-radius: .5rem;
+}
+
+section#colour-display h1 {
+    font-weight: 900;
+}
+
+section#colour-display #new-colour-button {
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-weight: 900;
+    padding: 1rem;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+section#colour-display #new-colour-button:hover {
+    background-color: darkgray;
+}
+    </style>
+    <section id="colour-display">
+        <h1>
+          Background: <span id="current-colour">#fffff</span>
+        </h1>
+        <button id="new-colour-button">New Colour!</button>
+      </section>
+      <script>
+const newColourBtnElement = document.getElementById(
+    'new-colour-button'
+);
+
+const currentColourElement = document.getElementById(
+    'current-colour'
+);
+
+// 0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F
+
+const hexValues = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+];
+
+function getRandomHexValue() {
+    const randomIndexPosition = Math.floor(
+        Math.random() * hexValues.length
+    );
+
+    const randomHexValue = hexValues[randomIndexPosition];
+
+    return randomHexValue;
+}
+
+function getRandomHexString(stringLength) {
+    let hexString = '';
+    for (let i = 0; i < stringLength; i++) {
+        hexString += getRandomHexValue();
+    }
+
+    return hexString;
+}
+
+newColourBtnElement.addEventListener('click', function () {
+    const randomHexString = '#' + getRandomHexString(6);
+
+    document.body.style.setProperty(
+        'background-color',
+        randomHexString
+    );
+
+    currentColourElement.textContent = randomHexString;
+});
+      </script>
+</body>
+</html>
